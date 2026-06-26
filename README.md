@@ -15,11 +15,11 @@
 - [X] 3. Criar um projeto next configurando para biome, typescript, tailwindcss
 - [X] 4. Adicionar a lib [shadcnui](https://ui.shadcn.com/)
 - [X] 5. Commit com mensagem "criado e configurado app inicial"
-- [ ] 6. Modificar a tela inicial com as seguintes informações
-  - [ ] Nome do aluno (`/src/app/page.tsx`)
-  - [ ] Modificar o título e o ícone da aplicação (`/src/app/layout.tsx`)
-  - [ ] Adicionar link para a página de login
-  - [ ] Commit com a mensagem "Modificado tela e layout inicial"
+- [X] 6. Modificar a tela inicial com as seguintes informações
+  - [X] Nome do aluno (`/src/app/page.tsx`)
+  - [X] Modificar o título e o ícone da aplicação (`/src/app/layout.tsx`)
+  - [X] Adicionar link para a página de login
+  - [X] Commit com a mensagem "Modificado tela e layout inicial"
 - [ ] 7. Adicionar tela de autenticação
   - [ ] Criar página `/src/app/auth/page.tsx`)
   - [ ] Adicionar formulário de autenticação
