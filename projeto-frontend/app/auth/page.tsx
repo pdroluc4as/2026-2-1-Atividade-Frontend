@@ -1,39 +1,63 @@
 "use client";
 
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { toast } from "sonner";
 import * as z from "zod";
 
-
 const formSchema = z.object({
-  title: z
+  name: z
     .string()
-    .min(5, "Bug title must be at least 5 characters.")
-    .max(32, "Bug title must be at most 32 characters."),
-  description: z
+    .max(32, "Name must be at most 32 characters."),
+  password: z
     .string()
-    .min(20, "Description must be at least 20 characters.")
-    .max(100, "Description must be at most 100 characters."),
-})
+    .max(10, "Password must be at most 10 characters."),
+});
 
-export function BugReportForm() {
-  const form = useForm<z.infer<typeof formSchema>>({
+type FormValues = z.infer<typeof formSchema>;
+
+export default function Page() {
+  const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      title: "",
-      description: "",
+      name: "",
+      password: "",
     },
-  })
+  });
 
-function onSubmit(data: z.infer<typeof formSchema>) {
-    console.log();
+  function onSubmit(data: FormValues) {
+    console.log(data);
   }
 
-export default function Home() {
-    return (
-        <form onSubmit={form.handleSubmit(onSubmit)}>
-            
-        </form>
-    )
+  return (
+    <form onSubmit={form.handleSubmit(onSubmit)}>
+      <Controller
+        name="name"
+        control={form.control}
+        render={({ field }) => (
+          <input
+            {...field}
+            placeholder="Apelido"
+            className="border rounded p-2 w-full"
+          />
+        )}
+      />
+
+      <Controller
+        name="password"
+        control={form.control}
+        render={({ field }) => (
+          <input
+            {...field}
+            type="password"
+            placeholder="Senha"
+            className="border rounded p-2 w-full mt-2"
+          />
+        )}
+      />
+
+      <button type="submit" className="mt-3 px-4 py-2 bg-blue-600 text-white rounded">
+        Enviar
+      </button>
+    </form>
+  );
 }
