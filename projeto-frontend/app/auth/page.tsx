@@ -38,13 +38,16 @@ export default function Page() {
   const onSubmit = async (values: FormValues) => {
     try {
       const login = await userAuth(values.username, values.password);
-
-      localStorage.setItem("@App:token", login.token);
-      localStorage.setItem("@App:user", JSON.stringify(login));
-
-      console.log("Login bem-sucedido!", login);
-      router.push("/");
-    } catch (error) {
+      
+      localStorage.setItem('user', login.username);
+      document.cookie = `app_token=${login.token}; path=/`;
+      document.cookie = `user=${JSON.stringify(login.username)} path=/`;
+      
+      console.log("Login bem-sucedido!");
+      console.log(localStorage.getItem('user'));
+      router.push("/dashboard/");
+    }     
+    catch (error) {
       console.error("Erro no formulário de login:", error);
     }
   };

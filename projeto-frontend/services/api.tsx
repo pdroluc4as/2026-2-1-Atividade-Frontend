@@ -10,11 +10,7 @@ const api = axios.create({
 interface AuthResponse {
   id: number;
   username: string;
-  email: string;
-  firstName: string;
-  lastName: string;
-  gender: string;
-  image: string;
+  password: string;
   token: string;
 }
 
@@ -32,5 +28,19 @@ const userAuth = async (username:string, password:string): Promise<AuthResponse>
     }
 }
 
+const quotesList = async () => {
+    try {
+        const resposta = await api.get("/quotes");
+
+        console.log(resposta.data.quotes);
+        return resposta;
+    }
+    catch(error) {
+        throw error;
+    }
+}
+
+
 export default api;
 export { userAuth };
+export { quotesList };
